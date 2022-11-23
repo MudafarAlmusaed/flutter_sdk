@@ -20,8 +20,7 @@ import 'package:meta/meta.dart';
 
 class Adjust {
   static const String _sdkPrefix = 'flutter4.32.0';
-  static const MethodChannel _channel =
-      const MethodChannel('com.adjust.sdk/api');
+  static const MethodChannel _channel = const MethodChannel('com.adjust.sdk/api');
 
   static void start(AdjustConfig config) {
     config.sdkPrefix = _sdkPrefix;
@@ -98,20 +97,18 @@ class Adjust {
   }
 
   static Future<num> requestTrackingAuthorizationWithCompletionHandler() async {
-    final num status = await _channel
-        .invokeMethod('requestTrackingAuthorizationWithCompletionHandler');
+    var status = await _channel.invokeMethod('requestTrackingAuthorizationWithCompletionHandler');
+    String moo = 'mpo';
     return status;
   }
 
   static Future<int> getAppTrackingAuthorizationStatus() async {
-    final int authorizationStatus =
-        await _channel.invokeMethod('getAppTrackingAuthorizationStatus');
+    final int authorizationStatus = await _channel.invokeMethod('getAppTrackingAuthorizationStatus');
     return authorizationStatus;
   }
 
   static Future<AdjustAttribution> getAttribution() async {
-    final dynamic attributionMap =
-        await _channel.invokeMethod('getAttribution');
+    final dynamic attributionMap = await _channel.invokeMethod('getAttribution');
     return AdjustAttribution.fromMap(attributionMap);
   }
 
@@ -121,13 +118,11 @@ class Adjust {
   }
 
   static void addSessionCallbackParameter(String key, String value) {
-    _channel.invokeMethod(
-        'addSessionCallbackParameter', {'key': key, 'value': value});
+    _channel.invokeMethod('addSessionCallbackParameter', {'key': key, 'value': value});
   }
 
   static void addSessionPartnerParameter(String key, String value) {
-    _channel.invokeMethod(
-        'addSessionPartnerParameter', {'key': key, 'value': value});
+    _channel.invokeMethod('addSessionPartnerParameter', {'key': key, 'value': value});
   }
 
   static void removeSessionCallbackParameter(String key) {
@@ -147,37 +142,31 @@ class Adjust {
   }
 
   static void trackAdRevenue(String source, String payload) {
-    _channel
-        .invokeMethod('trackAdRevenue', {'source': source, 'payload': payload});
+    _channel.invokeMethod('trackAdRevenue', {'source': source, 'payload': payload});
   }
 
   static void trackAdRevenueNew(AdjustAdRevenue adRevenue) {
     _channel.invokeMethod('trackAdRevenueNew', adRevenue.toMap);
   }
 
-  static void trackAppStoreSubscription(
-      AdjustAppStoreSubscription subscription) {
+  static void trackAppStoreSubscription(AdjustAppStoreSubscription subscription) {
     _channel.invokeMethod('trackAppStoreSubscription', subscription.toMap);
   }
 
-  static void trackPlayStoreSubscription(
-      AdjustPlayStoreSubscription subscription) {
+  static void trackPlayStoreSubscription(AdjustPlayStoreSubscription subscription) {
     _channel.invokeMethod('trackPlayStoreSubscription', subscription.toMap);
   }
 
-  static void trackThirdPartySharing(
-      AdjustThirdPartySharing thirdPartySharing) {
+  static void trackThirdPartySharing(AdjustThirdPartySharing thirdPartySharing) {
     _channel.invokeMethod('trackThirdPartySharing', thirdPartySharing.toMap);
   }
 
   static void trackMeasurementConsent(bool measurementConsent) {
-    _channel.invokeMethod(
-        'trackMeasurementConsent', {'measurementConsent': measurementConsent});
+    _channel.invokeMethod('trackMeasurementConsent', {'measurementConsent': measurementConsent});
   }
 
   static void updateConversionValue(int conversionValue) {
-    _channel.invokeMethod(
-        'updateConversionValue', {'conversionValue': conversionValue});
+    _channel.invokeMethod('updateConversionValue', {'conversionValue': conversionValue});
   }
 
   static void checkForNewAttStatus() {
