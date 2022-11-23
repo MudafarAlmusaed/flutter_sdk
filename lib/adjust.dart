@@ -98,13 +98,18 @@ class Adjust {
 
   static Future<num> requestTrackingAuthorizationWithCompletionHandler() async {
     var status = await _channel.invokeMethod('requestTrackingAuthorizationWithCompletionHandler');
-    String moo = 'mpo';
-    return status;
+    if (status is num) {
+      return status;
+    } else
+      return -1;
   }
 
   static Future<int> getAppTrackingAuthorizationStatus() async {
-    final int authorizationStatus = await _channel.invokeMethod('getAppTrackingAuthorizationStatus');
-    return authorizationStatus;
+    var authorizationStatus = await _channel.invokeMethod('getAppTrackingAuthorizationStatus');
+    if (authorizationStatus is int) {
+      return authorizationStatus;
+    } else
+      return -1;
   }
 
   static Future<AdjustAttribution> getAttribution() async {
